@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v17.11.0-ce"
+VERSION="v17.12.0-ce"
 
 echo "This has to be run on the PINE itself! Cross compiling is crazy annoying apparently..."
 
