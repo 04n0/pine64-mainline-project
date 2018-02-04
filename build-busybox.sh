@@ -2,7 +2,7 @@
 
 mkdir -p output/
 
-docker run -ti \
+docker run -ti --rm \
   -e "CROSS_COMPILE=aarch64-linux-gnu-" \
   -u `id -u`:`id -g` \
   -v `pwd`/:/base \
@@ -15,5 +15,3 @@ docker run -ti \
   ARCH=arm64 make oldconfig && \
   ARCH=arm64 make -j4 && \
   cp busybox /base/output/busybox'
-
-

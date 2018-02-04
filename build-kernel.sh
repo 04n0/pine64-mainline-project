@@ -2,7 +2,7 @@
 
 mkdir -p output/
 
-docker run -ti \
+docker run -ti --rm \
   -e "CROSS_COMPILE=aarch64-linux-gnu-" \
   -u `id -u`:`id -g` \
   -v `pwd`/:/base \

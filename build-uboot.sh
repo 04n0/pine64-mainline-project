@@ -2,7 +2,7 @@
 
 mkdir -p output/
 
-docker run -ti \
+docker run -ti --rm \
   -e "CROSS_COMPILE=aarch64-linux-gnu-" \
   -u `id -u`:`id -g` \
   -v `pwd`/:/base \
@@ -20,4 +20,3 @@ docker run -ti \
   make oldconfig && \
   make -j4 && \
   cat spl/sunxi-spl.bin u-boot.itb > /base/output/u-boot-sunxi-image.spl'
-
