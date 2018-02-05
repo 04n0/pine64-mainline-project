@@ -13,28 +13,27 @@ if [ x"$IMAGE" = "x" ]; then
 fi
 
 function run_chroot {
-  chroot $ROOTFS $@
+  /usr/sbin/chroot $ROOTFS "$@"
 }
 
 echo "Creating new image"
 dd if=/dev/zero of=$IMAGE bs=1G count=4 # create an empty 4GB file
-#truncate -s 4G $IMAGE
 
-sfdisk $IMAGE < config/partitions
+/sbin/sfdisk $IMAGE < config/partitions
 
 TARGET=$IMAGE
 
 mkdir -p $ROOTFS
 
 if [ -f $IMAGE ]; then
-  XTARGET=`losetup -f -P --show $IMAGE`
+  XTARGET=`/sbin/losetup -f -P --show $IMAGE`
   TARGET="${XTARGET}p"
   echo "Target is a file, mounting to $TARGET"
 fi
 
 echo "Creating filesystems..."
-mkfs.ext2 ${TARGET}1
-mkfs.ext4 ${TARGET}2
+/sbin/mkfs.ext2 ${TARGET}1
+/sbin/mkfs.ext4 ${TARGET}2
 
 echo "Mounting to $ROOTFS"
 mount ${TARGET}2 ${ROOTFS}
@@ -49,7 +48,7 @@ echo "Copying overlay extra files"
 cp -rvp overlay/* ${ROOTFS}/
 
 echo "Removing extra files"
-rm ${ROOTFS}/etc/machine-id 
+rm ${ROOTFS}/etc/machine-id
 rm ${ROOTFS}/etc/ssh/ssh_host_*
 
 echo "Adding kernel"
@@ -84,10 +83,10 @@ umount ${XTARGET}* || :
 
 if [ -f $IMAGE ]; then
   echo "Detaching loopback file"
-  losetup --detach $XTARGET
+  /sbin/losetup --detach $XTARGET
 fi
 
 echo "Adding SPL/U-Boot"
-dd conv=notrunc if=output/u-boot-sunxi-image.spl of=$IMAGE bs=8k seek=1 
+dd conv=notrunc if=output/u-boot-sunxi-image.spl of=$IMAGE bs=8k seek=1
 
 echo "All done!"

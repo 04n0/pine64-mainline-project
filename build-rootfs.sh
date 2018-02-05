@@ -6,13 +6,13 @@ ROOT=$1
 
 if [ x"$ROOT" = "x" ]; then
  echo "missing root target"
- exit 
+ exit
 fi
 
 EXTRA="iproute2,systemd-sysv,ntp,udev,vim,sudo,openssh-server,ifupdown,isc-dhcp-client,kmod,apt-transport-https,ca-certificates,locales"
 
 function run_chroot {
-  chroot $ROOT $@ 
+  /sbin/chroot $ROOT $@ 
 }
 
 qemu-debootstrap --arch=arm64 --variant=minbase ${DISTRO} $ROOT ${REPO} --include=$EXTRA
