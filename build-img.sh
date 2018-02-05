@@ -17,7 +17,7 @@ function run_chroot {
 }
 
 echo "Creating new image"
-dd if=/dev/zero of=$IMAGE bs=1G count=4 # create an empty 4GB file
+dd if=/dev/zero of=$IMAGE bs=1M count=7500 # create an empty 7,5GB file
 
 /sbin/sfdisk $IMAGE < config/partitions
 
