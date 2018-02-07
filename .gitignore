@@ -1,4 +1,6 @@
 *.deb
 *.changes
+*.bak
+.DS_Store
 output/
 extras/*
