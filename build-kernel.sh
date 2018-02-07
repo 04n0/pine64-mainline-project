@@ -26,4 +26,5 @@ docker run -ti --rm \
   cd /base/linux-image-pine64/ && \
   ./update.sh $KERNELVERSION && \
   mv /base/linux-image-pine64*.deb /base/output/ && \
+  dpkg-scanpackages /base/output /dev/null | gzip -9c > Packages.gz && \
   rm /base/linux-image-pine64*.changes /base/linux-image-pine64*.buildinfo'
