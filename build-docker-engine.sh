@@ -11,7 +11,7 @@ mkdir -p output
 
 pushd docker
 git clone https://github.com/docker/docker-ce.git --depth 1 --single-branch -b ${VERSION}
-cp config/docker-Dockerfile.aarch64 docker/docker-ce/components/packaging/deb/debian-stretch/Dockerfile.aarch64
+cp ../config/docker-Dockerfile.aarch64 docker/docker-ce/components/packaging/deb/debian-stretch/Dockerfile.aarch64
 docker pull ${BASEIMAGE}
 pushd docker-ce/components/packaging/deb
 make debian-stretch
