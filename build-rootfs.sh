@@ -9,7 +9,7 @@ if [ x"$ROOT" = "x" ]; then
  exit
 fi
 
-EXTRA="iproute2,systemd-sysv,ntp,udev,vim,sudo,openssh-server,ifupdown,isc-dhcp-client,kmod,apt-transport-https,ca-certificates,locales,curl,mc,bash-completion,htop,iotop,python3.5"
+EXTRA="iproute2,systemd-sysv,ntp,udev,vim,sudo,openssh-server,ifupdown,isc-dhcp-client,kmod,apt-transport-https,ca-certificates,locales,curl,mc,bash-completion,htop,iotop,python3.5,git,gnupg2,ethtool"
 
 function run_chroot {
   /sbin/chroot $ROOT "$@"
